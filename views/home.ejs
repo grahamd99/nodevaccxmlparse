@@ -1,0 +1,61 @@
+<%- include('partials/header'); -%>
+
+<H1>Vaccination rendered as html</H1>
+
+
+<H2>Patient details</H2>
+
+<table>
+  <tr>
+    <td>Patient NHS Number</td>
+    <td><%= nhsnumber %></td>
+  </tr>
+<table>
+
+
+<H2>Vaccination details</H2>
+
+<table>
+  <tr>
+    <td>identifier system</td>
+    <td><%= identifierSystem %></td>
+  </tr>
+  <tr>
+    <td>identifier (value)</td>
+    <td><%= identifierValue %></td>
+  </tr>
+  <tr>
+    <td>vaccineProcedure (SNOMED)</td>
+    <td><%= vaccineProcedureCode %></td>
+  </tr>
+  <tr>
+    <td>vaccineProcedure (display)</td>
+    <td><%= vaccineProcedureDisplay %></td>
+  </tr>
+  <tr>
+    <td>vaccineCode (SNOMED)</td>
+    <td><%= vaccineCodeSNOMED %></td>
+  </tr>
+  <tr>
+    <td>vaccineCode (Display)</td>
+    <td><%= vaccineCodeDisplay %></td>
+  </tr>
+  <tr>
+    <td>notGiven</td>
+    <td><%= notGiven %></tr>
+  <tr>
+    <td>dateChar</td>
+    <td><%= dateChar %></td>
+  </tr>
+<table>
+
+<H2>Practitioner details</H2>
+
+<table>
+  <tr>
+    <td>Practoner name</td>
+    <td><%= nhsnumber %></td>
+  </tr>
+<table>
+
+<%- include('partials/footer'); -%>
