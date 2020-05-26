@@ -14,7 +14,7 @@ app.get("/",function(req,res){
   res.render("home");
 });
 
-fs.readFile('./vacc_example.xml', (err, data) => {
+fs.readFile('./vacc_example_nems.xml', (err, data) => {
   if (err) {
     console.error(err)
     return
