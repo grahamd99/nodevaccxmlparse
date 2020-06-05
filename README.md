@@ -1,5 +1,5 @@
 # nodevaccxmlparse
-A node.js app to parse FHIR Vaccination bundle and create an HTML version of it
+A node.js express app to parse FHIR Vaccination bundles and render HTML versions of it
 
 Some useful links:
 <li>https://www.npmjs.com/package/xml2js</li>

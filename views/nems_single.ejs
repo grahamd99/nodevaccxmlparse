@@ -3,16 +3,6 @@
 <H1>NEMS (single) Vaccination rendered as html</H1>
 
 
-<H2>Patient details</H2>
-
-<table>
-  <tr>
-    <td>Patient NHS Number</td>
-    <td><%= nhsnumber %></td>
-  </tr>
-<table>
-
-
 <H2>Vaccination details</H2>
 
 <table>
@@ -49,12 +39,63 @@
   </tr>
 <table>
 
+<H2>HealthcareService details</H2>
+
+<table>
+  <tr>
+    <td>SNOMED code</td>
+    <td><%= hcsSNOMED %></td>
+  </tr>
+  <tr>
+    <td>SNOMED display</td>
+    <td><%= hcsDisplay %></td>
+  </tr>
+<table>
+
+<H2>Organisation details</H2>
+
+<table>
+  <tr>
+    <td>Organisation ODS</td>
+    <td><%= orgODS %></td>
+  </tr>
+  <tr>
+    <td>Organisation name</td>
+    <td><%= orgName %></td>
+  </tr>
+<table>
+
+<H2>Patient details</H2>
+
+<table>
+  <tr>
+    <td>Patient NHS Number</td>
+    <td><%= nhsnumber %></td>
+  </tr>
+  <tr>
+    <td>Patient name</td>
+    <td><%= patGiven + ' ' + patFamily %></td>
+  </tr>
+  <tr>
+    <td>Patient DOB 1</td>
+    <td><%= patDOB1 %></td>
+  </tr>
+  <tr>
+    <td>Patient DOB 2</td>
+    <td><%= patDOB2 %></td>
+  </tr>
+<table>
+
 <H2>Practitioner details</H2>
 
 <table>
   <tr>
-    <td>Practoner name</td>
-    <td><%= nhsnumber %></td>
+    <td>Practitioner name</td>
+    <td><%= pracPrefix + ' ' + pracGiven + ' ' + pracFamily %></td>
+  </tr>
+  <tr>
+    <td>Practitioner SDS</td>
+    <td><%= pracSDS %></td>
   </tr>
 <table>
 
