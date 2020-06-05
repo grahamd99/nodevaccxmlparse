@@ -54,14 +54,14 @@ fs.readFile('./' + fileToParse, (err, data) => {
 
         if (tempResource2 == "Immunization")  {
          // Immunization resource
-          global.identifierSystem   = result.Bundle.entry[1].resource[0].Immunization[0].identifier[0].system[0].$.value;
-          global.identifierValue    = result.Bundle.entry[1].resource[0].Immunization[0].identifier[0].value[0].$.value;
-          global.vaccineProcedureCode = result.Bundle.entry[1].resource[0].Immunization[0].extension[0].valueCodeableConcept[0].coding[0].code[0].$.value;
-          global.vaccineProcedureDisplay = result.Bundle.entry[1].resource[0].Immunization[0].extension[0].valueCodeableConcept[0].coding[0].display[0].$.value;     
-          global.notGiven           = result.Bundle.entry[1].resource[0].Immunization[0].notGiven[0].$.value;
-          global.vaccineCodeSNOMED  = result.Bundle.entry[1].resource[0].Immunization[0].vaccineCode[0].coding[0].code[0].$.value;
-          global.vaccineCodeDisplay = result.Bundle.entry[1].resource[0].Immunization[0].vaccineCode[0].coding[0].display[0].$.value;
-          global.dateChar           = result.Bundle.entry[1].resource[0].Immunization[0].date[0].$.value;
+          global.identifierSystem   = result.Bundle.entry[i].resource[0].Immunization[0].identifier[0].system[0].$.value;
+          global.identifierValue    = result.Bundle.entry[i].resource[0].Immunization[0].identifier[0].value[0].$.value;
+          global.vaccineProcedureCode = result.Bundle.entry[i].resource[0].Immunization[0].extension[0].valueCodeableConcept[0].coding[0].code[0].$.value;
+          global.vaccineProcedureDisplay = result.Bundle.entry[i].resource[0].Immunization[0].extension[0].valueCodeableConcept[0].coding[0].display[0].$.value;     
+          global.notGiven           = result.Bundle.entry[i].resource[0].Immunization[0].notGiven[0].$.value;
+          global.vaccineCodeSNOMED  = result.Bundle.entry[i].resource[0].Immunization[0].vaccineCode[0].coding[0].code[0].$.value;
+          global.vaccineCodeDisplay = result.Bundle.entry[i].resource[0].Immunization[0].vaccineCode[0].coding[0].display[0].$.value;
+          global.dateChar           = result.Bundle.entry[i].resource[0].Immunization[0].date[0].$.value;
         }
 
         if (tempResource2 == "HealthcareService")  {
