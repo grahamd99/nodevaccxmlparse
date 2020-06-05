@@ -6,6 +6,7 @@ var fs      = require('fs'),
 var parser = new xml2js.Parser();
 var app = express();
 var port = 3000;
+var fileToParse = "vacc_example_nems.xml";
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -14,7 +15,13 @@ app.get("/",function(req,res){
   res.render("home");
 });
 
-fs.readFile('./vacc_example_nems.xml', (err, data) => {
+app.get("/single",function(req,res){
+  res.render("nems_single.ejs");
+});
+
+console.log("Attempting to parse: " + fileToParse);
+
+fs.readFile('./' + fileToParse, (err, data) => {
   if (err) {
     console.error(err)
     return
