@@ -1,0 +1,19 @@
+<%- include('partials/header'); -%>
+
+<H1>Validator page</H1>
+
+<p>Welcome</p>
+
+<p>File to validate: <%= fileToValidate %>
+
+<form action="/startvalidator" method="POST">
+  <label for="fname">Filename:</label>
+  <input type="text" id="fileToValidate" name="fileToValidate" placeholder="test.xml">
+  <button>submit</button>
+</form>
+
+
+
+
+
+<%- include('partials/footer'); -%>
