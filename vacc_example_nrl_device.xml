@@ -131,8 +131,8 @@
 					<valueCodeableConcept>
 						<coding>
 							<system value="http://snomed.info/sct"/>
-							<code value="170330007"/>
-							<display value="First tetanus vaccination (procedure)"/>
+							<code value="61541000000104"/>
+							<display value="First diphtheria, tetanus and acellular pertussis, inactivated polio, Haemophilus influenzae type b and hepatitis B vaccination not done (situation)"/>
 						</coding>
 					</valueCodeableConcept>
 				</extension>
