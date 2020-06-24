@@ -104,12 +104,13 @@ app.get("/multi",function(req,res){
         };
 
         console.log("vaccCount :" + global.vaccCount);
+        res.render("nrl_multi.ejs");
 
     });
 
   });
 
-    res.render("nrl_multi.ejs");
+
     
 });
 
