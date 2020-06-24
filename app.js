@@ -48,7 +48,7 @@ app.get("/multi",function(req,res){
         global.vaccineCodeSNOMED = [];
         global.vaccineCodeDisplay = [];
         global.dateChar = [];
-
+        global.vaccPracId = [];
         global.vaccCount = 0;
 
         for (i = 1; i <= numberOfResources; i++) {
@@ -57,18 +57,25 @@ app.get("/multi",function(req,res){
           var tempResource2 = tempResource.slice(2,endBit);
           console.log("Resource : " + i + " " + tempResource2);
 
+          if (tempResource2 == "Device")  {
+              // its the Device resource so maybe do nothing
+              //console.log("Device meh");
+          }
+
           if (tempResource2 == "Immunization")  {
-        //global.vaccCount == global.vaccCount+1;
-        global.vaccCount++;
-           // Immunization resource
-            global.identifierSystem[i]  = result.Bundle.entry[i].resource[0].Immunization[0].identifier[0].system[0].$.value;
-            global.identifierValue[i]    = result.Bundle.entry[i].resource[0].Immunization[0].identifier[0].value[0].$.value;
-            global.vaccineProcedureCode[i] = result.Bundle.entry[i].resource[0].Immunization[0].extension[0].valueCodeableConcept[0].coding[0].code[0].$.value;
-            global.vaccineProcedureDisplay[i] = result.Bundle.entry[i].resource[0].Immunization[0].extension[0].valueCodeableConcept[0].coding[0].display[0].$.value;     
-            global.notGiven[i]           = result.Bundle.entry[i].resource[0].Immunization[0].notGiven[0].$.value;
-            global.vaccineCodeSNOMED[i]  = result.Bundle.entry[i].resource[0].Immunization[0].vaccineCode[0].coding[0].code[0].$.value;
-            global.vaccineCodeDisplay[i] = result.Bundle.entry[i].resource[0].Immunization[0].vaccineCode[0].coding[0].display[0].$.value;
-            global.dateChar[i]           = result.Bundle.entry[i].resource[0].Immunization[0].date[0].$.value;
+            //global.vaccCount == global.vaccCount+1;
+            global.vaccCount++;
+            var vaccNumber = i-1;
+            // Immunization resource
+            global.identifierSystem[vaccNumber]  = result.Bundle.entry[i].resource[0].Immunization[0].identifier[0].system[0].$.value;
+            global.identifierValue[vaccNumber]    = result.Bundle.entry[i].resource[0].Immunization[0].identifier[0].value[0].$.value;
+            global.vaccineProcedureCode[vaccNumber] = result.Bundle.entry[i].resource[0].Immunization[0].extension[0].valueCodeableConcept[0].coding[0].code[0].$.value;
+            global.vaccineProcedureDisplay[vaccNumber] = result.Bundle.entry[i].resource[0].Immunization[0].extension[0].valueCodeableConcept[0].coding[0].display[0].$.value;     
+            global.notGiven[vaccNumber]           = result.Bundle.entry[i].resource[0].Immunization[0].notGiven[0].$.value;
+            global.vaccineCodeSNOMED[vaccNumber]  = result.Bundle.entry[i].resource[0].Immunization[0].vaccineCode[0].coding[0].code[0].$.value;
+            global.vaccineCodeDisplay[vaccNumber] = result.Bundle.entry[i].resource[0].Immunization[0].vaccineCode[0].coding[0].display[0].$.value;
+            global.dateChar[vaccNumber]           = result.Bundle.entry[i].resource[0].Immunization[0].date[0].$.value;
+            global.vaccPracId[vaccNumber]       = result.Bundle.entry[i].resource[0].Immunization[0].practitioner[0].actor[0].reference[0].$.value;
           }
 
           if (tempResource2 == "HealthcareService")  {
@@ -95,6 +102,7 @@ app.get("/multi",function(req,res){
 
           if (tempResource2 == "Practitioner")  {
             // Practitioner resource
+            global.pracId             = result.Bundle.entry[i].resource[0].Practitioner[0].id[0].$.value;
             global.pracPrefix         = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].prefix[0].$.value;
             global.pracGiven          = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].given[0].$.value;
             global.pracFamily         = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].family[0].$.value;

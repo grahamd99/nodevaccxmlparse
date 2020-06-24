@@ -1,5 +1,4 @@
-<Bundle
-    xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir">
     <id value="6e824ff8-9b0a-11e8-9eb6-529269fb1459"/>
     <meta>
         <profile value="http://hl7.org/fhir/STU3/StructureDefinition/Bundle"/>
@@ -7,8 +6,7 @@
     <type value="collection"/>
     <entry>
         <resource>
-            <List
-                xmlns="http://hl7.org/fhir">
+            <List xmlns="http://hl7.org/fhir">
                 <status value="current"/>
                 <mode value="snapshot"/>
                 <code>
@@ -22,6 +20,9 @@
                     <reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
                 </subject>
                 <date value="2020-05-09T12:10:23+11:00"/>
+                <source>
+                    <reference value="urn:uuid:aba33ccc-a593-11ea-bb37-0242ac130002"/>
+				</source>
                 <orderedBy>
                     <coding>
                         <system value="http://hl7.org/fhir/list-order"/>
@@ -40,6 +41,28 @@
                 </entry>
             </List>
         </resource>
+    </entry>
+    <entry>
+		<fullUrl value="urn:uuid:aba33ccc-a593-11ea-bb37-0242ac130002"/>
+		<resource>
+	  		<Device>
+	      		<id value="aba33ccc-a593-11ea-bb37-0242ac130002"/>
+                <meta>
+                    <profile value="http://hl7.org/fhir/STU3/device"/>
+                </meta>
+	       	    <owner>
+        	        <reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+	       	    </owner>
+	            <contact>
+		            <system value="phone"/>
+                    <value value="0191 1231234"/>
+	            </contact>
+	            <contact>
+		            <system value="url"/>
+                    <value value="http://acme.com"/>
+	            </contact>
+	   		</Device>
+		</resource>
     </entry>
     <entry>
         <fullUrl value="urn:uuid:076db265-8799-4dda-9418-e2a4d6d1c0d0"/>
@@ -191,7 +214,7 @@
                         <coding>
                             <system value="http://snomed.info/sct"/>
                             <code value="428975001"/>
-                            <display value=" Vaccination with Haemophilus influenzae type B and Neisseria meningitidis serotype C combination vaccine (procedure)"/>
+                            <display value="Vaccination with Haemophilus influenzae type B and Neisseria meningitidis serotype C combination vaccine (procedure)"/>
                         </coding>
                     </valueCodeableConcept>
                 </extension>
@@ -250,6 +273,84 @@
                             <system value="http://snomed.info/sct"/>
                             <code value="864111000000108"/>
                             <display value="Recommendation to have child immunised against meningitis C (procedure)"/>
+                        </coding>
+                    </reason>
+                </explanation>
+            </Immunization>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:ae323a75-71e5-45a9-980b-f730bad23211"/>
+        <resource>
+            <Immunization>
+                <id value="ae323a75-71e5-45a9-980b-f730bad23211"/>
+                <meta>
+                    <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Immunization-1"/>
+                </meta>
+                <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-VaccinationProcedure-1">
+                    <valueCodeableConcept>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="28877009"/>
+                            <display value="Cholera vaccination (procedure)"/>
+                        </coding>
+                    </valueCodeableConcept>
+                </extension>
+                <identifier>
+                    <system value="https://supplierABC/identifiers"/>
+                    <value value="imms30001"/>
+                </identifier>
+                <status value="completed"/>
+                <notGiven value="false"/>
+                <vaccineCode>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="5185911000001103"/>
+                        <display value="Dukoral cholera vaccine oral suspension (Chiron Vaccines Evans) (product)"/>
+                    </coding>
+                </vaccineCode>
+                <patient>
+                    <reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+                </patient>
+                <encounter>
+                    <reference value="urn:uuid:0b5365ea-5eb5-4119-bfad-c6dfe0874b1b"/>
+                </encounter>
+                <date value="2020-03-09T09:48:44+00:00"></date>
+                <primarySource value="true"/>
+                <location>
+                    <reference value="urn:uuid:e19a8932-7ccd-4b4a-bed2-b13f5e924698"/>
+                </location>
+                <lotNumber value="3ABCG567"/>
+                <site>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="91775009"/>
+                        <display value="Structure of left shoulder region"/>
+                    </coding>
+                </site>
+                <route>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="34206005"/>
+                        <display value="Subcutaneous route"/>
+                    </coding>
+                </route>
+                <doseQuantity>
+                    <value value="0.5"/>
+                    <system value="http://unitsofmeasure.org"/>
+                    <code value="ml"/>
+                </doseQuantity>
+                <practitioner>
+                    <actor>
+                        <reference value="urn:uuid:f25e9d63-6a4e-4de6-b9dc-c912fda62b01"/>
+                    </actor>
+                </practitioner>
+                <explanation>
+                    <reason>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="161096004"/>
+                            <display value="Going to travel abroad (finding)"/>
                         </coding>
                     </reason>
                 </explanation>
