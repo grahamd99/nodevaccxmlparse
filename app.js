@@ -9,7 +9,8 @@ var app = express();
 var port = 3000;
 var NEMSfileToParse = "vacc_example_nems.xml";
 //var NRLfileToParse = "vacc_example_nrl_device.xml";
-var NRLfileToParse = "vacc_example_nrl_device3.xml";
+var NRLVaccfileToParse = "vacc_example_nrl_device3.xml";
+var NRLAllergyfileToParse = "allergy_example.xml";
 
 global.fileToValidate = "test.xml";
 
@@ -22,11 +23,117 @@ app.get("/",function(req,res){
 });
 
 
-app.get("/multi",function(req,res){
+app.get("/multiallergy",function(req,res){
 
-  console.log("Attempting to parse: " + NRLfileToParse);
+  console.log("Attempting to parse: " + NRLAllergyfileToParse);
 
-  fs.readFile('./' + NRLfileToParse, (err, data) => {
+  fs.readFile('./' + NRLAllergyfileToParse, (err, data) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+
+    parser.parseString(data, function (err, result) {
+        //console.dir(result);
+        //console.log(util.inspect(result, false, null));
+
+        var numberOfResources = result.Bundle.entry.length - 1;
+        console.log("NRL numberOfResources : " + numberOfResources);
+        console.log("NRL type : " + typeof numberOfResources);
+
+        global.identifierSystem = [];
+        global.identifierValue = [];
+        global.allergyCodeSNOMED = [];
+        global.allergyCodeDisplay = [];
+        /*
+        global.dateChar = [];
+        global.vaccPracId = [];
+        */
+        global.allergyCount = 0;
+
+        global.listCodeSNOMED  = result.Bundle.entry[0].resource[0].List[0].code[0].coding[0].code[0].$.value;
+        global.listDisplaySNOMED  = result.Bundle.entry[0].resource[0].List[0].code[0].coding[0].display[0].$.value;
+
+       for (i = 1; i <= numberOfResources; i++) {
+          var tempResource = JSON.stringify( result.Bundle.entry[i].resource[0] );
+          var endBit = tempResource.indexOf('":');
+          var tempResource2 = tempResource.slice(2,endBit);
+          console.log("Resource : " + i + " " + tempResource2);
+
+          if (tempResource2 == "Device")  {
+              // its the Device resource so maybe do nothing
+              //console.log("Device meh");
+          }
+
+
+          if (tempResource2 == "AllergyIntolerance")  {
+            //global.vaccCount == global.vaccCount+1;
+            global.allergyCount++;
+            var allergyNumber = i-1;
+
+            // Immunization resource
+            global.identifierSystem[allergyNumber]  = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].identifier[0].system[0].$.value;
+            global.identifierValue[allergyNumber]    = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].identifier[0].value[0].$.value;
+            global.allergyCodeSNOMED[allergyNumber]  = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].code[0].coding[0].code[0].$.value;
+            global.allergyCodeDisplay[allergyNumber] = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].code[0].coding[0].display[0].$.value;
+/*
+            global.dateChar[vaccNumber]           = result.Bundle.entry[i].resource[0].Immunization[0].date[0].$.value;
+            global.vaccPracId[vaccNumber]       = result.Bundle.entry[i].resource[0].Immunization[0].practitioner[0].actor[0].reference[0].$.value;
+            */
+            //console.log("allergy identifierSystem: " + global.identifierSystem[allergyNumber]);
+
+          }
+
+          if (tempResource2 == "HealthcareService")  {
+            // HealthcareService resource
+            global.hcsSNOMED           = result.Bundle.entry[i].resource[0].HealthcareService[0].type[0].coding[0].code[0].$.value;
+            global.hcsDisplay          = result.Bundle.entry[i].resource[0].HealthcareService[0].type[0].coding[0].display[0].$.value;
+          }
+
+          if (tempResource2 == "Patient")  {
+            // Patient resource
+            global.nhsnumber          = result.Bundle.entry[i].resource[0].Patient[0].identifier[0].value[0].$.value;
+            global.patGiven           = result.Bundle.entry[i].resource[0].Patient[0].name[0].given[0].$.value;
+            global.patFamily          = result.Bundle.entry[i].resource[0].Patient[0].name[0].family[0].$.value;
+            global.patGender          = result.Bundle.entry[i].resource[0].Patient[0].gender[0].$.value;
+            global.patDOB1            = result.Bundle.entry[i].resource[0].Patient[0].birthDate[0].$.value;
+            global.patDOB2            = result.Bundle.entry[i].resource[0].Patient[0].birthDate[0].extension[0].valueDateTime[0].$.value;
+          }
+
+          if (tempResource2 == "Organization")  {
+            // Organization resource
+            global.orgODS             = result.Bundle.entry[i].resource[0].Organization[0].identifier[0].value[0].$.value;
+            global.orgName            = result.Bundle.entry[i].resource[0].Organization[0].name[0].$.value;
+          }
+
+          if (tempResource2 == "Practitioner")  {
+            // Practitioner resource
+            global.pracId             = result.Bundle.entry[i].resource[0].Practitioner[0].id[0].$.value;
+            global.pracPrefix         = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].prefix[0].$.value;
+            global.pracGiven          = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].given[0].$.value;
+            global.pracFamily         = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].family[0].$.value;
+            global.pracSDS            = result.Bundle.entry[i].resource[0].Practitioner[0].identifier[0].value[0].$.value;
+          }
+
+        };
+
+        console.log("allergyCount :" + global.allergyCount);
+        res.render("nrl_multi_allergy.ejs");
+
+    });
+
+  });
+
+
+    
+});
+
+
+app.get("/multivacc",function(req,res){
+
+  console.log("Attempting to parse: " + NRLVaccfileToParse);
+
+  fs.readFile('./' + NRLVaccfileToParse, (err, data) => {
     if (err) {
       console.error(err)
       return
@@ -50,6 +157,9 @@ app.get("/multi",function(req,res){
         global.dateChar = [];
         global.vaccPracId = [];
         global.vaccCount = 0;
+
+        global.listCodeSNOMED  = result.Bundle.entry[0].resource[0].List[0].code[0].coding[0].code[0].$.value;
+        global.listDisplaySNOMED  = result.Bundle.entry[0].resource[0].List[0].code[0].coding[0].display[0].$.value;
 
         for (i = 1; i <= numberOfResources; i++) {
           var tempResource = JSON.stringify( result.Bundle.entry[i].resource[0] );
@@ -112,7 +222,7 @@ app.get("/multi",function(req,res){
         };
 
         console.log("vaccCount :" + global.vaccCount);
-        res.render("nrl_multi.ejs");
+        res.render("nrl_multi_vacc.ejs");
 
     });
 

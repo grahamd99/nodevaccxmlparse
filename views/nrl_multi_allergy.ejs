@@ -1,0 +1,107 @@
+<%- include('partials/header'); -%>
+
+<H1>NRL (multi) Allergies rendered as html</H1>
+
+<H2>List details</H2>
+<table>
+   <tr>
+     <td>List SNOMED code</td>
+     <td><%= listCodeSNOMED %></td>
+   </tr>
+   <tr>
+     <td>List SNOMED display</td>
+     <td><%= listDisplaySNOMED %></td>
+   </tr>
+</table>
+
+<H2>Allergy details</H2>
+
+ <% for(var i=0; i < allergyCount; i++) { %>
+ <p>Allergy number : <%= [i+1] %>
+ <table>
+   <tr>
+     <td>identifier system </td>
+     <td><%= identifierSystem[i] %></td>
+   </tr>
+   <tr>
+    <td>identifier (value)</td>
+    <td><%= identifierValue[i] %></td>
+  </tr>
+  <tr>
+    <td>allergyCode (SNOMED)</td>
+    <td><%= allergyCodeSNOMED[i] %></td>
+  </tr>
+  <tr>
+    <td>allergyCode (Display)</td>
+    <td><%= allergyCodeDisplay[i] %></td>
+  </tr>
+ <table>
+ <% } %>
+
+
+<H2>HealthcareService details</H2>
+
+<table>
+  <tr>
+    <td>SNOMED code</td>
+    <td><%= hcsSNOMED %></td>
+  </tr>
+  <tr>
+    <td>SNOMED display</td>
+    <td><%= hcsDisplay %></td>
+  </tr>
+<table>
+
+<H2>Organisation details</H2>
+
+<table>
+  <tr>
+    <td>Organisation ODS</td>
+    <td><%= orgODS %></td>
+  </tr>
+  <tr>
+    <td>Organisation name</td>
+    <td><%= orgName %></td>
+  </tr>
+<table>
+
+<H2>Patient details</H2>
+
+<table>
+  <tr>
+    <td>Patient NHS Number</td>
+    <td><%= nhsnumber %></td>
+  </tr>
+  <tr>
+    <td>Patient name</td>
+    <td><%= patGiven + ' ' + patFamily %></td>
+  </tr>
+  <tr>
+    <td>Patient DOB 1</td>
+    <td><%= patDOB1 %></td>
+  </tr>
+  <tr>
+    <td>Patient DOB 2</td>
+    <td><%= patDOB2 %></td>
+  </tr>
+<table>
+
+<H2>Practitioner details</H2>
+
+<table>
+  <tr>
+    <td>Practitioner Id</td>
+    <td><%= pracId %></td>
+  </tr>
+  <tr>
+    <td>Practitioner name</td>
+    <td><%= pracPrefix + ' ' + pracGiven + ' ' + pracFamily %></td>
+  </tr>
+  <tr>
+    <td>Practitioner SDS</td>
+    <td><%= pracSDS %></td>
+  </tr>
+<table>
+
+
+<%- include('partials/footer'); -%>
