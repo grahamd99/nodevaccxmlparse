@@ -28,25 +28,49 @@
     <td>identifier (value)</td>
     <td><%= identifierValue[i] %></td>
   </tr>
-  <tr>
-    <td>vaccineProcedure (SNOMED)</td>
-    <td><%= vaccineProcedureCode[i] %></td>
-  </tr>
-  <tr>
-    <td>vaccineProcedure (display)</td>
-    <td><%= vaccineProcedureDisplay[i] %></td>
-  </tr>
-  <tr>
-    <td>vaccineCode (SNOMED)</td>
-    <td><%= vaccineCodeSNOMED[i] %></td>
-  </tr>
-  <tr>
-    <td>vaccineCode (Display)</td>
-    <td><%= vaccineCodeDisplay[i] %></td>
-  </tr>
-  <tr>
-    <td>notGiven</td>
-    <td><%= notGiven[i] %></tr>
+  <%if (notGiven[i] == "true") { %>
+    <tr>
+      <td>vaccineProcedure (SNOMED)</td>
+      <td style="color:Tomato"><%= vaccineProcedureCode[i] %></td>
+    </tr>
+    <tr>
+      <td>vaccineProcedure (display)</td>
+      <td style="color:Tomato"><%= vaccineProcedureDisplay[i] %></td>
+    </tr>
+    <tr>
+      <td>vaccineCode (SNOMED)</td>
+      <td style="color:Tomato"><%= vaccineCodeSNOMED[i] %></td>
+    </tr>
+    <tr>
+      <td>vaccineCode (Display)</td>
+      <td style="color:Tomato"><%= vaccineCodeDisplay[i] %></td>
+    </tr>
+    <tr>
+      <td>notGiven</td>
+      <td style="color:Tomato"><%= notGiven[i] %>
+    </tr>
+  <% } else{ %>
+    <tr>
+      <td>vaccineProcedure (SNOMED)</td>
+      <td><%= vaccineProcedureCode[i] %></td>
+    </tr>
+    <tr>
+      <td>vaccineProcedure (display)</td>
+      <td><%= vaccineProcedureDisplay[i] %></td>
+    </tr>
+    <tr>
+      <td>vaccineCode (SNOMED)</td>
+      <td><%= vaccineCodeSNOMED[i] %></td>
+    </tr>
+    <tr>
+      <td>vaccineCode (Display)</td>
+      <td><%= vaccineCodeDisplay[i] %></td>
+    </tr>
+    <tr>
+      <td>notGiven</td>
+      <td><%= notGiven[i] %>
+    </tr>
+  <% } %>
   <tr>
     <td>dateChar</td>
     <td><%= dateChar[i] %></td>

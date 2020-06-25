@@ -22,7 +22,7 @@
                 <date value="2020-05-09T12:10:23+11:00"/>
                 <source>
                     <reference value="urn:uuid:aba33ccc-a593-11ea-bb37-0242ac130002"/>
-				</source>
+                </source>
                 <orderedBy>
                     <coding>
                         <system value="http://hl7.org/fhir/list-order"/>
@@ -43,26 +43,26 @@
         </resource>
     </entry>
     <entry>
-		<fullUrl value="urn:uuid:aba33ccc-a593-11ea-bb37-0242ac130002"/>
-		<resource>
-	  		<Device>
-	      		<id value="aba33ccc-a593-11ea-bb37-0242ac130002"/>
+        <fullUrl value="urn:uuid:aba33ccc-a593-11ea-bb37-0242ac130002"/>
+        <resource>
+            <Device>
+                <id value="aba33ccc-a593-11ea-bb37-0242ac130002"/>
                 <meta>
                     <profile value="http://hl7.org/fhir/STU3/device"/>
                 </meta>
-	       	    <owner>
-        	        <reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-	       	    </owner>
-	            <contact>
-		            <system value="phone"/>
+                <owner>
+                    <reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+                </owner>
+                <contact>
+                    <system value="phone"/>
                     <value value="0191 1231234"/>
-	            </contact>
-	            <contact>
-		            <system value="url"/>
+                </contact>
+                <contact>
+                    <system value="url"/>
                     <value value="http://acme.com"/>
-	            </contact>
-	   		</Device>
-		</resource>
+                </contact>
+            </Device>
+        </resource>
     </entry>
     <entry>
         <fullUrl value="urn:uuid:076db265-8799-4dda-9418-e2a4d6d1c0d0"/>
@@ -143,64 +143,64 @@
         </resource>
     </entry>
     <entry>
-		<fullUrl value="urn:uuid:f4c3ed2b-e6ad-4eb3-a565-96b2e2edb1ce"/>
-		<resource>
-			<Immunization>
-				<id value="f4c3ed2b-e6ad-4eb3-a565-96b2e2edb1ce"/>
-				<meta>
-					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Immunization-1"/>
-				</meta>
-				<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-VaccinationProcedure-1">
-					<valueCodeableConcept>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="61541000000104"/>
-							<display value="First diphtheria, tetanus and acellular pertussis, inactivated polio, Haemophilus influenzae type b and hepatitis B vaccination not done (situation)"/>
-						</coding>
-					</valueCodeableConcept>
-				</extension>
-				<identifier>
-					<system value="https://supplierABC/identifiers"/>
-					<value value="ims11112"/>
-				</identifier>
-				<status value="completed"/>
-				<notGiven value="true"/>
-				<vaccineCode>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="37055911000001102"/>
-						<display value="Tetanus vaccine (adsorbed) suspension for injection 0.5ml pre-filled syringes (product)"/>
-					</coding>
-				</vaccineCode>
-				<patient>
-					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
-				</patient>
-				<encounter>
-					<reference value="urn:uuid:0b5365ea-5eb5-4119-bfad-c6dfe0874b1b"/>
-				</encounter>
-				<date value="2020-01-18T12:31:44+00:00">
-				</date>
-				<primarySource value="true"/>
-				<location>
-					<reference value="urn:uuid:e19a8932-7ccd-4b4a-bed2-b13f5e924698"/>
-				</location>
-				<practitioner>
-					<actor>
-						<reference value="urn:uuid:f25e9d63-6a4e-4de6-b9dc-c912fda62b01"/>
-					</actor>
-				</practitioner>
-				<explanation>
-					<reasonNotGiven>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="310376006"/>
-							<display value="Immunization consent not given (finding)"/>
-						</coding>
-					</reasonNotGiven>
-				</explanation>
-			</Immunization>
-		</resource>
-	</entry>
+        <fullUrl value="urn:uuid:f4c3ed2b-e6ad-4eb3-a565-96b2e2edb1ce"/>
+        <resource>
+            <Immunization>
+                <id value="f4c3ed2b-e6ad-4eb3-a565-96b2e2edb1ce"/>
+                <meta>
+                    <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Immunization-1"/>
+                </meta>
+                <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-VaccinationProcedure-1">
+                    <valueCodeableConcept>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="61541000000104"/>
+                            <display value="First diphtheria, tetanus and acellular pertussis, inactivated polio, Haemophilus influenzae type b and hepatitis B vaccination not done (situation)"/>
+                        </coding>
+                    </valueCodeableConcept>
+                </extension>
+                <identifier>
+                    <system value="https://supplierABC/identifiers"/>
+                    <value value="ims11112"/>
+                </identifier>
+                <status value="completed"/>
+                <notGiven value="true"/>
+                <vaccineCode>
+                    <coding>
+                        <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                        <code value="UNK"/>
+                        <display value="unknown"/>
+                    </coding>
+                </vaccineCode>
+                <patient>
+                    <reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+                </patient>
+                <encounter>
+                    <reference value="urn:uuid:0b5365ea-5eb5-4119-bfad-c6dfe0874b1b"/>
+                </encounter>
+                <date value="2020-01-18T12:31:44+00:00">
+                </date>
+                <primarySource value="true"/>
+                <location>
+                    <reference value="urn:uuid:e19a8932-7ccd-4b4a-bed2-b13f5e924698"/>
+                </location>
+                <practitioner>
+                    <actor>
+                        <reference value="urn:uuid:f25e9d63-6a4e-4de6-b9dc-c912fda62b01"/>
+                    </actor>
+                </practitioner>
+                <explanation>
+                    <reasonNotGiven>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="310376006"/>
+                            <display value="Immunization consent not given (finding)"/>
+                        </coding>
+                    </reasonNotGiven>
+                </explanation>
+            </Immunization>
+        </resource>
+    </entry>
     <entry>
         <fullUrl value="urn:uuid:ccaf6d7c-af3f-11ea-b3de-0242ac130004"/>
         <resource>

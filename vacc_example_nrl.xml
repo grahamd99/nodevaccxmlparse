@@ -131,8 +131,8 @@
 					<valueCodeableConcept>
 						<coding>
 							<system value="http://snomed.info/sct"/>
-							<code value="170330007"/>
-							<display value="First tetanus vaccination (procedure)"/>
+							<code value="61541000000104"/>
+							<display value="First diphtheria, tetanus and acellular pertussis, inactivated polio, Haemophilus influenzae type b and hepatitis B vaccination not done (situation)"/>
 						</coding>
 					</valueCodeableConcept>
 				</extension>
@@ -142,13 +142,13 @@
 				</identifier>
 				<status value="completed"/>
 				<notGiven value="true"/>
-				<vaccineCode>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="37055911000001102"/>
-						<display value="Tetanus vaccine (adsorbed) suspension for injection 0.5ml pre-filled syringes (product)"/>
-					</coding>
-				</vaccineCode>
+                <vaccineCode>
+                    <coding>
+                        <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                        <code value="UNK"/>
+                        <display value="unknown"/>
+                    </coding>
+                </vaccineCode>
 				<patient>
 					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 				</patient>
