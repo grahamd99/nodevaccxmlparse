@@ -45,10 +45,19 @@ app.get("/multiallergy",function(req,res){
         global.identifierValue = [];
         global.allergyCodeSNOMED = [];
         global.allergyCodeDisplay = [];
-        /*
-        global.dateChar = [];
-        global.vaccPracId = [];
-        */
+        global.listCodeSNOMED  = [];
+        global.listDisplaySNOMED  = [];
+        global.clinicalStatus = [];
+        global.verificationStatus = [];
+        global.type = [];
+        global.asserter = [];
+        global.note = [];
+        global.reactionCodeSNOMED = [];
+        global.reactionDisplaySNOMED = [];
+        global.reactionSeverity = [];
+        global.onsetString = [];
+        global.assertedDate = [];
+
         global.allergyCount = 0;
 
         global.listCodeSNOMED  = result.Bundle.entry[0].resource[0].List[0].code[0].coding[0].code[0].$.value;
@@ -71,12 +80,22 @@ app.get("/multiallergy",function(req,res){
             global.allergyCount++;
             var allergyNumber = i-1;
 
-            // Immunization resource
-            global.identifierSystem[allergyNumber]  = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].identifier[0].system[0].$.value;
+            // AllergyIntolerance
+            global.identifierSystem[allergyNumber]   = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].identifier[0].system[0].$.value;
             global.identifierValue[allergyNumber]    = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].identifier[0].value[0].$.value;
             global.allergyCodeSNOMED[allergyNumber]  = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].code[0].coding[0].code[0].$.value;
             global.allergyCodeDisplay[allergyNumber] = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].code[0].coding[0].display[0].$.value;
-/*
+            global.clinicalStatus[allergyNumber]     = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].clinicalStatus[0].$.value;
+            global.verificationStatus[allergyNumber] = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].verificationStatus[0].$.value;
+            global.type[allergyNumber]               = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].type[0].$.value;
+            global.asserter[allergyNumber]           = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].asserter[0].reference[0].$.value;
+            global.note[allergyNumber]               = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].note[0].text[0].$.value;
+            global.reactionCodeSNOMED[allergyNumber]    = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].reaction[0].manifestation[0].coding[0].code[0].$.value;
+            global.reactionDisplaySNOMED[allergyNumber] = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].reaction[0].manifestation[0].coding[0].display[0].$.value;
+            global.reactionSeverity[allergyNumber]      = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].reaction[0].severity[0].$.value;
+            global.onsetString[allergyNumber]           = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].onsetString[0].$.value;
+            global.assertedDate[allergyNumber]           = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].assertedDate[0].$.value;
+/* 
             global.dateChar[vaccNumber]           = result.Bundle.entry[i].resource[0].Immunization[0].date[0].$.value;
             global.vaccPracId[vaccNumber]       = result.Bundle.entry[i].resource[0].Immunization[0].practitioner[0].actor[0].reference[0].$.value;
             */

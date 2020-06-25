@@ -75,7 +75,7 @@
 					<reference value="urn:uuid:dfb12928-d441-45f9-941e-1bc2aa4ebc9d"/>
 				</asserter>
 				<note>
-					<text value="Evidence: Reacted badly to penicillin prescription as a child&#xd;&#xa;Comment: Prescribe alternative an antibiotic group"/>
+					<text value="Evidence: Reacted badly to penicillin prescription as a child; Comment: Prescribe alternative an antibiotic group"/>
 				</note>
 				<reaction>
 					<manifestation>
@@ -91,6 +91,55 @@
 		</resource>
 	</entry>
 	<entry>
+		<fullUrl value="urn:uuid:89433cac-6226-428d-99c1-988cd8f31a18"/>
+		<resource>
+			<AllergyIntolerance>
+				<id value="89433cac-6226-428d-99c1-988cd8f31a18"/>
+				<meta>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-AllergyIntolerance-1"/>
+				</meta>
+				<extension url="http://hl7.org/fhir/StructureDefinition/encounter-associatedEncounter">
+					<reference value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
+				</extension>
+				<identifier>
+					<system value="https://supplierABC/identifiers"/>
+					<value value="allergy653"/>
+				</identifier>
+				<clinicalStatus value="active"/>
+				<verificationStatus value="confirmed"/>
+				<type value="allergy"/>
+				<code>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="703911000"/>
+						<display value="Allergy to clam (disorder)"/>
+					</coding>
+				</code>
+				<patient>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				</patient>
+				<onsetString value="In Childhood"/>
+				<assertedDate value="2018-01-29"/>
+				<asserter>
+					<reference value="urn:uuid:dfb12928-d441-45f9-941e-1bc2aa4ebc9d"/>
+				</asserter>
+				<note>
+					<text value="Evidence: Reacted badly to clam chowder smoothie as a child; Comment: Avoid clam based antibiotic groups"/>
+				</note>
+				<reaction>
+					<manifestation>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="16932000"/>
+							<display value="Nausea and vomiting (disorder)"/>
+						</coding>
+					</manifestation>
+					<severity value="severe"/>
+				</reaction>
+			</AllergyIntolerance>
+		</resource>
+	</entry>
+	<entry>
 		<fullUrl value="urn:uuid:65c8a90d-2011-4a50-acd0-2f1a3b18cdcb"/>
 		<resource>
 			<Device>
@@ -101,10 +150,6 @@
 				<owner>
 					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				</owner>
-				<contact>
-					<system value="phone"/>
-					<value value="0191 1231234"/>
-				</contact>
 			</Device>
 		</resource>
 	</entry>
@@ -135,7 +180,7 @@
 					<given value="Jack"/>
 				</name>
 				<gender value="male"/>
-				<birthDate value="2013-10-12">
+				<birthDate value="2017-10-12">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
 						<valueDateTime value="2017-10-02T12:00:00+00:00"/>
 					</extension>
@@ -257,6 +302,9 @@
 					<district value="COUNTY DURHAM"/>
 					<postalCode value="DH1 5TW"/>
 				</address>
+				<contact>
+					<telecom value="0191 1231234"/>
+				</contact>
 			</Organization>
 		</resource>
 	</entry>
