@@ -41,28 +41,19 @@ app.get("/multiobs",function(req,res){
         console.log("NRL numberOfResources : " + numberOfResources);
         console.log("NRL type : " + typeof numberOfResources);
 
+        global.metaProfile = [];
+        global.status = [];
+        global.category = [];
         global.identifierSystem = [];
         global.identifierValue = [];
         global.obsCodeLOINS = [];
         global.obsCodeSNOMED = [];
         global.obsCodeDisplay = [];
+        global.effectiveDate = [];
+        global.performer = [];
         global.obsValue = [];
         global.obsUnitAbb = [];
-        global.metaProfile = [];
-/*
-        global.listCodeSNOMED  = [];
-        global.listDisplaySNOMED  = [];
-        global.clinicalStatus = [];
-        global.verificationStatus = [];
-        global.type = [];
-        global.asserter = [];
-        global.note = [];
-        global.reactionCodeSNOMED = [];
-        global.reactionDisplaySNOMED = [];
-        global.reactionSeverity = [];
-        global.onsetString = [];
-        global.assertedDate = [];
-*/
+
         global.obsCount = 0;
 
         global.listCodeSNOMED  = result.Bundle.entry[0].resource[0].List[0].code[0].coding[0].code[0].$.value;
@@ -87,13 +78,14 @@ app.get("/multiobs",function(req,res){
             // Observation
             global.identifierSystem[obsNumber]   = result.Bundle.entry[i].resource[0].Observation[0].identifier[0].system[0].$.value;
             global.identifierValue[obsNumber]    = result.Bundle.entry[i].resource[0].Observation[0].identifier[0].value[0].$.value;
-
             global.metaProfile[obsNumber]  = result.Bundle.entry[i].resource[0].Observation[0].meta[0].profile[0].$.value;
-            console.log("metaProfile : " + global.metaProfile[obsNumber] );
-
+            global.status[obsNumber]   = result.Bundle.entry[i].resource[0].Observation[0].status[0].$.value;
+            global.category[obsNumber]   = result.Bundle.entry[i].resource[0].Observation[0].category[0].coding[0].code[0].$.value;
             global.obsCodeLOINS[obsNumber]  = result.Bundle.entry[i].resource[0].Observation[0].code[0].coding[0].code[0].$.value;
             global.obsCodeSNOMED[obsNumber]  = result.Bundle.entry[i].resource[0].Observation[0].code[0].coding[1].code[0].$.value;
             global.obsCodeDisplay[obsNumber] = result.Bundle.entry[i].resource[0].Observation[0].code[0].coding[1].display[0].$.value;
+            global.effectiveDate[obsNumber] = result.Bundle.entry[i].resource[0].Observation[0].effectiveDateTime[0].$.value;
+            global.performer[obsNumber] = result.Bundle.entry[i].resource[0].Observation[0].performer[0].reference[0].$.value;
 
             if ( global.metaProfile[obsNumber] == "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-BloodPressure-Observation-1" ) {
               var sys = result.Bundle.entry[i].resource[0].Observation[0].component[0].valueQuantity[0].value[0].$.value;  
@@ -105,24 +97,8 @@ app.get("/multiobs",function(req,res){
             global.obsUnitAbb[obsNumber]  = result.Bundle.entry[i].resource[0].Observation[0].valueQuantity[0].code[0].$.value;          
             }
 
-            console.log("obsValue : " + obsValue[obsNumber]);
-
-
-            /*
-            global.clinicalStatus[allergyNumber]     = result.Bundle.entry[i].resource[0].Observation[0].clinicalStatus[0].$.value;
-            global.verificationStatus[allergyNumber] = result.Bundle.entry[i].resource[0].Observation[0].verificationStatus[0].$.value;
-            global.type[allergyNumber]               = result.Bundle.entry[i].resource[0].Observation[0].type[0].$.value;
-            global.asserter[allergyNumber]           = result.Bundle.entry[i].resource[0].Observation[0].asserter[0].reference[0].$.value;
-            global.note[allergyNumber]               = result.Bundle.entry[i].resource[0].Observation[0].note[0].text[0].$.value;
-            global.reactionCodeSNOMED[allergyNumber]    = result.Bundle.entry[i].resource[0].Observation[0].reaction[0].manifestation[0].coding[0].code[0].$.value;
-            global.reactionDisplaySNOMED[allergyNumber] = result.Bundle.entry[i].resource[0].Observation[0].reaction[0].manifestation[0].coding[0].display[0].$.value;
-            global.reactionSeverity[allergyNumber]      = result.Bundle.entry[i].resource[0].Observation[0].reaction[0].severity[0].$.value;
-            global.onsetString[allergyNumber]           = result.Bundle.entry[i].resource[0].Observation[0].onsetString[0].$.value;
-            global.assertedDate[allergyNumber]           = result.Bundle.entry[i].resource[0].Observation[0].assertedDate[0].$.value;
-*/
           }
 
-/*
           if (tempResource2 == "HealthcareService")  {
             // HealthcareService resource
             global.hcsSNOMED           = result.Bundle.entry[i].resource[0].HealthcareService[0].type[0].coding[0].code[0].$.value;
@@ -141,6 +117,7 @@ app.get("/multiobs",function(req,res){
 
           if (tempResource2 == "Organization")  {
             // Organization resource
+            global.orgId             = result.Bundle.entry[i].resource[0].Organization[0].id[0].$.value;
             global.orgODS             = result.Bundle.entry[i].resource[0].Organization[0].identifier[0].value[0].$.value;
             global.orgName            = result.Bundle.entry[i].resource[0].Organization[0].name[0].$.value;
           }
@@ -153,7 +130,7 @@ app.get("/multiobs",function(req,res){
             global.pracFamily         = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].family[0].$.value;
             global.pracSDS            = result.Bundle.entry[i].resource[0].Practitioner[0].identifier[0].value[0].$.value;
           }
-*/
+
         };
 
         console.log("obsCount :" + global.obsCount);
@@ -240,11 +217,6 @@ app.get("/multiallergy",function(req,res){
             global.reactionSeverity[allergyNumber]      = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].reaction[0].severity[0].$.value;
             global.onsetString[allergyNumber]           = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].onsetString[0].$.value;
             global.assertedDate[allergyNumber]           = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].assertedDate[0].$.value;
-/* 
-            global.dateChar[vaccNumber]           = result.Bundle.entry[i].resource[0].Immunization[0].date[0].$.value;
-            global.vaccPracId[vaccNumber]       = result.Bundle.entry[i].resource[0].Immunization[0].practitioner[0].actor[0].reference[0].$.value;
-            */
-            //console.log("allergy identifierSystem: " + global.identifierSystem[allergyNumber]);
 
           }
 
@@ -500,8 +472,5 @@ global.pracPrefix  = "NA";
 global.pracGiven   = "NA";
 global.pracFamily  = "NA";
 global.pracSDS    = "NA";
-
-
-
 
 app.listen(port, () => console.log("Server started and listening on port " + port ));

@@ -19,6 +19,18 @@
  <% for(var i=0; i < obsCount; i++) { %>
  <p>Observation number : <%= [i+1] %>
  <table>
+  <tr>
+     <td>FHIR resource </td>
+     <td><%= metaProfile[i+8] %></td>
+   </tr>  
+   <tr>
+     <td>Status </td>
+     <td><%= status[i+8] %></td>
+   </tr>
+   <tr>
+     <td>Category code value </td>
+     <td><%= category[i+8] %></td>
+   </tr>
    <tr>
      <td>identifier system </td>
      <td><%= identifierSystem[i+8] %></td>
@@ -26,6 +38,14 @@
    <tr>
     <td>identifier (value)</td>
     <td><%= identifierValue[i+8] %></td>
+  </tr>
+  <tr>
+    <td>effective date</td>
+    <td><%= effectiveDate[i+8] %></td>
+  </tr>
+  <tr>
+    <td>performer (practioner Id)</td>
+    <td><%= performer[i+8] %></td>
   </tr>
   <tr>
     <td>obsCode (LOINS)</td>
@@ -50,5 +70,73 @@
   </tr>
  <table>
  <% } %>
+
+<H2>HealthcareService details</H2>
+
+<table>
+  <tr>
+    <td>SNOMED code</td>
+    <td><%= hcsSNOMED %></td>
+  </tr>
+  <tr>
+    <td>SNOMED display</td>
+    <td><%= hcsDisplay %></td>
+  </tr>
+<table>
+
+<H2>Organisation details</H2>
+
+<table>
+  <tr>
+    <td>Organisation ID</td>
+    <td><%= orgId %></td>
+  </tr>
+  <tr>
+    <td>Organisation ODS</td>
+    <td><%= orgODS %></td>
+  </tr>
+  <tr>
+    <td>Organisation name</td>
+    <td><%= orgName %></td>
+  </tr>
+<table>
+
+<H2>Patient details</H2>
+
+<table>
+  <tr>
+    <td>Patient NHS Number</td>
+    <td><%= nhsnumber %></td>
+  </tr>
+  <tr>
+    <td>Patient name</td>
+    <td><%= patGiven + ' ' + patFamily %></td>
+  </tr>
+  <tr>
+    <td>Patient DOB 1</td>
+    <td><%= patDOB1 %></td>
+  </tr>
+  <tr>
+    <td>Patient DOB 2</td>
+    <td><%= patDOB2 %></td>
+  </tr>
+<table>
+
+<H2>Practitioner details</H2>
+
+<table>
+  <tr>
+    <td>Practitioner Id</td>
+    <td><%= pracId %></td>
+  </tr>
+  <tr>
+    <td>Practitioner name</td>
+    <td><%= pracPrefix + ' ' + pracGiven + ' ' + pracFamily %></td>
+  </tr>
+  <tr>
+    <td>Practitioner SDS</td>
+    <td><%= pracSDS %></td>
+  </tr>
+<table>
 
 <%- include('partials/footer'); -%>

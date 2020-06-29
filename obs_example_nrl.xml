@@ -730,6 +730,55 @@
         </resource>
     </entry>
     <entry>
+        <fullUrl value="urn:uuid:89a0e785-4b32-48da-8d86-54287c00b491"/>
+        <resource>
+            <Observation>
+                <id value="89a0e785-4b32-48da-8d86-54287c00b491"/>
+                <meta>
+                    <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Observation-1"/>
+                </meta>
+                <identifier>
+                    <system value="https://supplierABC/identifiers"/>
+                    <value value="bmiID123"/>
+                </identifier>
+                <status value="final"/>
+                <category>
+                    <coding>
+                        <system value="http://hl7.org/fhir/observation-category"/>
+                        <code value="vital-signs"/>
+                    </coding>
+                </category>
+                <code>
+                    <coding>
+                        <system value="http://loinc.org"/>
+                        <code value="59574-4"/>
+                    </coding>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="896691000000102"/>
+                        <display value="Child body mass index centile"/>
+                    </coding>
+                </code>
+                <subject>
+                    <reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+                </subject>
+                <context>
+                    <reference value="urn:uuid:a3bec8bd-56af-4ca9-9eb9-889f3f9adecb"/>
+                </context>
+                <effectiveDateTime value="2017-11-01"/>
+                <performer>
+                    <reference value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
+                </performer>
+                <valueQuantity>
+                    <value value="67"/>
+                    <unit value="Percent"/>
+                    <system value="http://unitsofmeasure.org"/>
+                    <code value="%"/>
+                </valueQuantity>
+            </Observation>
+        </resource>
+    </entry>
+    <entry>
         <fullUrl value="urn:uuid:e888b84f-d390-4abf-a4a9-444f31f929bc"/>
         <resource>
             <DeviceRequest>
