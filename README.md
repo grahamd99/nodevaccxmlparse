@@ -1,12 +1,12 @@
 # nodevaccxmlparse
 A node.js express app to parse FHIR bundles and render HTML versions of it
 
-To install:
-1) Clone it locally
-2) install the node modules
-$ npm install
-3) run it
-$ node app.js
+To install:<br>
+1) Clone it locally<br>
+2) install the node modules<br>
+$ npm install<br>
+3) run it<br>
+$ node app.js<br>
 
 Then access it at http://localhost:3000
 
