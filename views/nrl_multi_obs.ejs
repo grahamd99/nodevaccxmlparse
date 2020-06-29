@@ -14,5 +14,41 @@
    </tr>
 </table>
 
+<H2>Observation details</H2>
+
+ <% for(var i=0; i < obsCount; i++) { %>
+ <p>Observation number : <%= [i+1] %>
+ <table>
+   <tr>
+     <td>identifier system </td>
+     <td><%= identifierSystem[i+8] %></td>
+   </tr>
+   <tr>
+    <td>identifier (value)</td>
+    <td><%= identifierValue[i+8] %></td>
+  </tr>
+  <tr>
+    <td>obsCode (LOINS)</td>
+    <td><%= obsCodeLOINS[i+8] %></td>
+  </tr>
+  <tr>
+    <td>obsCode (SNOMED)</td>
+    <td><%= obsCodeSNOMED[i+8] %></td>
+  </tr>
+  <tr>
+    <td>obsCode (Display)</td>
+    <td><%= obsCodeDisplay[i+8] %></td>
+  </tr>
+  </tr>
+  <tr>
+    <td>obs value</td>
+    <td><%= obsValue[i+8] %></td>
+  </tr>
+  <tr>
+    <td>obs value unit</td>
+    <td><%= obsUnitAbb[i+8] %></td>
+  </tr>
+ <table>
+ <% } %>
 
 <%- include('partials/footer'); -%>

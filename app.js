@@ -41,11 +41,15 @@ app.get("/multiobs",function(req,res){
         console.log("NRL numberOfResources : " + numberOfResources);
         console.log("NRL type : " + typeof numberOfResources);
 
-/*
         global.identifierSystem = [];
         global.identifierValue = [];
-        global.allergyCodeSNOMED = [];
-        global.allergyCodeDisplay = [];
+        global.obsCodeLOINS = [];
+        global.obsCodeSNOMED = [];
+        global.obsCodeDisplay = [];
+        global.obsValue = [];
+        global.obsUnitAbb = [];
+        global.metaProfile = [];
+/*
         global.listCodeSNOMED  = [];
         global.listDisplaySNOMED  = [];
         global.clinicalStatus = [];
@@ -69,36 +73,56 @@ app.get("/multiobs",function(req,res){
           var endBit = tempResource.indexOf('":');
           var tempResource2 = tempResource.slice(2,endBit);
           console.log("Resource : " + i + " " + tempResource2);
-/*
+
           if (tempResource2 == "Device")  {
               // its the Device resource so maybe do nothing
               //console.log("Device meh");
           }
 
 
-          if (tempResource2 == "AllergyIntolerance")  {
-            //global.vaccCount == global.vaccCount+1;
-            global.allergyCount++;
-            var allergyNumber = i-1;
+          if (tempResource2 == "Observation")  {
+            global.obsCount++;
+            var obsNumber = i-1;
 
-            // AllergyIntolerance
-            global.identifierSystem[allergyNumber]   = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].identifier[0].system[0].$.value;
-            global.identifierValue[allergyNumber]    = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].identifier[0].value[0].$.value;
-            global.allergyCodeSNOMED[allergyNumber]  = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].code[0].coding[0].code[0].$.value;
-            global.allergyCodeDisplay[allergyNumber] = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].code[0].coding[0].display[0].$.value;
-            global.clinicalStatus[allergyNumber]     = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].clinicalStatus[0].$.value;
-            global.verificationStatus[allergyNumber] = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].verificationStatus[0].$.value;
-            global.type[allergyNumber]               = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].type[0].$.value;
-            global.asserter[allergyNumber]           = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].asserter[0].reference[0].$.value;
-            global.note[allergyNumber]               = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].note[0].text[0].$.value;
-            global.reactionCodeSNOMED[allergyNumber]    = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].reaction[0].manifestation[0].coding[0].code[0].$.value;
-            global.reactionDisplaySNOMED[allergyNumber] = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].reaction[0].manifestation[0].coding[0].display[0].$.value;
-            global.reactionSeverity[allergyNumber]      = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].reaction[0].severity[0].$.value;
-            global.onsetString[allergyNumber]           = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].onsetString[0].$.value;
-            global.assertedDate[allergyNumber]           = result.Bundle.entry[i].resource[0].AllergyIntolerance[0].assertedDate[0].$.value;
+            // Observation
+            global.identifierSystem[obsNumber]   = result.Bundle.entry[i].resource[0].Observation[0].identifier[0].system[0].$.value;
+            global.identifierValue[obsNumber]    = result.Bundle.entry[i].resource[0].Observation[0].identifier[0].value[0].$.value;
 
+            global.metaProfile[obsNumber]  = result.Bundle.entry[i].resource[0].Observation[0].meta[0].profile[0].$.value;
+            console.log("metaProfile : " + global.metaProfile[obsNumber] );
+
+            global.obsCodeLOINS[obsNumber]  = result.Bundle.entry[i].resource[0].Observation[0].code[0].coding[0].code[0].$.value;
+            global.obsCodeSNOMED[obsNumber]  = result.Bundle.entry[i].resource[0].Observation[0].code[0].coding[1].code[0].$.value;
+            global.obsCodeDisplay[obsNumber] = result.Bundle.entry[i].resource[0].Observation[0].code[0].coding[1].display[0].$.value;
+
+            if ( global.metaProfile[obsNumber] == "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-BloodPressure-Observation-1" ) {
+              var sys = result.Bundle.entry[i].resource[0].Observation[0].component[0].valueQuantity[0].value[0].$.value;  
+              var dia = result.Bundle.entry[i].resource[0].Observation[0].component[1].valueQuantity[0].value[0].$.value;  
+              global.obsValue[obsNumber] = sys + "/" + dia;
+              global.obsUnitAbb[obsNumber] = "mm[Hg]";
+            } else{
+            global.obsValue[obsNumber]  = result.Bundle.entry[i].resource[0].Observation[0].valueQuantity[0].value[0].$.value;    
+            global.obsUnitAbb[obsNumber]  = result.Bundle.entry[i].resource[0].Observation[0].valueQuantity[0].code[0].$.value;          
+            }
+
+            console.log("obsValue : " + obsValue[obsNumber]);
+
+
+            /*
+            global.clinicalStatus[allergyNumber]     = result.Bundle.entry[i].resource[0].Observation[0].clinicalStatus[0].$.value;
+            global.verificationStatus[allergyNumber] = result.Bundle.entry[i].resource[0].Observation[0].verificationStatus[0].$.value;
+            global.type[allergyNumber]               = result.Bundle.entry[i].resource[0].Observation[0].type[0].$.value;
+            global.asserter[allergyNumber]           = result.Bundle.entry[i].resource[0].Observation[0].asserter[0].reference[0].$.value;
+            global.note[allergyNumber]               = result.Bundle.entry[i].resource[0].Observation[0].note[0].text[0].$.value;
+            global.reactionCodeSNOMED[allergyNumber]    = result.Bundle.entry[i].resource[0].Observation[0].reaction[0].manifestation[0].coding[0].code[0].$.value;
+            global.reactionDisplaySNOMED[allergyNumber] = result.Bundle.entry[i].resource[0].Observation[0].reaction[0].manifestation[0].coding[0].display[0].$.value;
+            global.reactionSeverity[allergyNumber]      = result.Bundle.entry[i].resource[0].Observation[0].reaction[0].severity[0].$.value;
+            global.onsetString[allergyNumber]           = result.Bundle.entry[i].resource[0].Observation[0].onsetString[0].$.value;
+            global.assertedDate[allergyNumber]           = result.Bundle.entry[i].resource[0].Observation[0].assertedDate[0].$.value;
+*/
           }
 
+/*
           if (tempResource2 == "HealthcareService")  {
             // HealthcareService resource
             global.hcsSNOMED           = result.Bundle.entry[i].resource[0].HealthcareService[0].type[0].coding[0].code[0].$.value;
@@ -132,7 +156,7 @@ app.get("/multiobs",function(req,res){
 */
         };
 
-        //console.log("obsCount :" + global.allergyCount);
+        console.log("obsCount :" + global.obsCount);
         res.render("nrl_multi_obs.ejs");
 
     });
