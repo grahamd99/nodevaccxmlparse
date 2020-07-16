@@ -12,6 +12,8 @@ var NEMSfileToParse = "vacc_example_nems.xml";
 var NRLVaccfileToParse = "vacc_example_nrl_device3.xml";
 var NRLAllergyfileToParse = "allergy_example.xml";
 var NRLObservationfileToParse = "obs_example_nrl.xml";
+//var NIPEDelfileToParse = "testnipedel.xml";
+var NIPEDelfileToParse = "testnipedelnems.xml";
 
 global.fileToValidate = "test.xml";
 
@@ -22,6 +24,79 @@ app.set("view engine", "ejs");
 app.get("/",function(req,res){
   res.render("home");
 });
+
+
+app.get("/singlenipdel",function(req,res){
+
+  console.log("Attempting to parse: " +  NIPEDelfileToParse);
+
+  fs.readFile('./' +  NIPEDelfileToParse, (err, data) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+
+    parser.parseString(data, function (err, result) {
+        //console.dir(result);
+        //console.log(util.inspect(result, false, null));
+
+        var numberOfResources = result.Bundle.entry.length - 1;
+        console.log("NEMS numberOfResources : " + numberOfResources);
+        console.log("NEMS type : " + typeof numberOfResources);
+
+        // MessageHeader resource
+        global.type = result.Bundle.type[0].$.value;
+
+        for (i = 1; i <= numberOfResources; i++) {
+          var tempResource = JSON.stringify( result.Bundle.entry[i].resource[0] );
+          var endBit = tempResource.indexOf('":');
+          var tempResource2 = tempResource.slice(2,endBit);
+          console.log("Resource : " + i + " " + tempResource2);
+
+          if (tempResource2 == "Encounter")  {
+           // Encounter resource
+            global.identifierSystem   = result.Bundle.entry[i].resource[0].Encounter[0].identifier[0].system[0].$.value;
+            global.identifierValue    = result.Bundle.entry[i].resource[0].Encounter[0].identifier[0].value[0].$.value;
+          }
+
+          if (tempResource2 == "HealthcareService")  {
+            // HealthcareService resource
+            global.hcsSNOMED           = result.Bundle.entry[i].resource[0].HealthcareService[0].type[0].coding[0].code[0].$.value;
+            global.hcsDisplay          = result.Bundle.entry[i].resource[0].HealthcareService[0].type[0].coding[0].display[0].$.value;
+          }
+
+          if (tempResource2 == "Patient")  {
+            // Patient resource
+            global.nhsnumber          = result.Bundle.entry[i].resource[0].Patient[0].identifier[0].value[0].$.value;
+            global.patGiven           = result.Bundle.entry[i].resource[0].Patient[0].name[0].given[0].$.value;
+            global.patFamily          = result.Bundle.entry[i].resource[0].Patient[0].name[0].family[0].$.value;
+            global.patGender          = result.Bundle.entry[i].resource[0].Patient[0].gender[0].$.value;
+            global.patDOB1            = result.Bundle.entry[i].resource[0].Patient[0].birthDate[0].$.value;
+            global.patDOB2            = result.Bundle.entry[i].resource[0].Patient[0].birthDate[0].extension[0].valueDateTime[0].$.value;
+          }
+
+          if (tempResource2 == "Organization")  {
+            // Organization resource
+            global.orgODS             = result.Bundle.entry[i].resource[0].Organization[0].identifier[0].value[0].$.value;
+            global.orgName            = result.Bundle.entry[i].resource[0].Organization[0].name[0].$.value;
+          }
+
+          if (tempResource2 == "Practitioner")  {
+            // Practitioner resource
+            //global.pracPrefix         = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].prefix[0].$.value;
+            global.pracGiven          = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].given[0].$.value;
+            //global.pracFamily         = result.Bundle.entry[i].resource[0].Practitioner[0].name[0].family[0].$.value;
+            //global.pracSDS            = result.Bundle.entry[i].resource[0].Practitioner[0].identifier[0].value[0].$.value;
+          }
+
+        }
+    });
+
+    res.render("nems_single_nipedel.ejs");
+    
+  })
+});
+
 
 app.get("/multiobs",function(req,res){
 
